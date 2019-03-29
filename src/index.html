@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>IPFS_Uploader</title>
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./src/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Image upload by IPFS</h1>
+    <form>
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="selectImage">
+            <label class="custom-file-label" for="selectImage">Select image</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tokenName">Token Name</label>
+        <input type="text" class="form-control" id="tokenName">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description"></textarea>
+      </div>
+
+      <button type="button" name="button" class="btn btn-primary" id="uploadImage">Upload</button>
+    </form>
+  </div>
+  <!-- <script src="https://wzrd.in/standalone/buffer"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/buffer@5.2.1/index.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script> -->
+  <script type="text/javascript" src="./src/dist/bundle.js"></script>
+</body>
+</html>
