@@ -25,7 +25,7 @@ gulp.task('bs-reload', function (done) {
 });
 
 gulp.task('watch', function(){
-  gulp.watch("./src/*.html", gulp.task('bs-reload'));
+  gulp.watch("*.html", gulp.task('bs-reload'));
   gulp.watch("./src/css/*.css", gulp.task('bs-reload'));
   gulp.watch("./src/js/*.js", gulp.series('browserify', 'bs-reload'));
 });
