@@ -4,7 +4,6 @@ require('popper.js');
 require('bootstrap');
 var ipfsClient = require('ipfs-http-client');
 const ipfs = ipfsClient({host:'ipfs.infura.io', protocol:'https'});
-console.log(ipfs);
 
 let tokenURI_state = {
   name: "",
@@ -23,7 +22,7 @@ $('#uploadImage').on('click', function(){
   const description = $('#description').val();
   const file = $('#selectImage')[0].files[0];
 
-  if (file == '') {
+  if (file == undefined) {
     alert('select the image')
   } else if (name == '') {
     alert('Enter the name')
@@ -35,14 +34,42 @@ $('#uploadImage').on('click', function(){
     const reader = new FileReader();
 
     reader.addEventListener('load', async function(){
-      console.log(reader.result);
-      const buffer =  ipfs.types.Buffer.from(reader.result);
-      console.log(buffer);
-      const results = await ipfs.add(buffer);
+      //upload image
+      let results = await upload(reader.result);
       tokenURI_state.image = "https://ipfs.io/ipfs/"+results[0].hash;
-      console.log(tokenURI_state);
+
+      //upload tokenURI_state
+      tokenURI_state = JSON.stringify(tokenURI_state);
+      results = await upload(tokenURI_state);
+
+      $('#tokenURI').val("https://ipfs.io/ipfs/" + results[0].hash);
+      $('#tokenURIGroup').slideDown('normal')
     })
 
     reader.readAsArrayBuffer(file);
   }
+})
+
+async function upload(value) {
+  const buffer = ipfs.types.Buffer.from(value);
+  const results = await ipfs.add(buffer);
+  return results;
+}
+
+//TODO:自動的に戻ってしまうから、調整する
+$('#tokenURI').hover(function(){
+  $('#copy').slideDown('normal')
+})
+
+$('#copy').hover(function(){}, function(){
+  $('#copy').slideUp('normal');
+})
+
+$('#copy').on('click', function(){
+  //select copy_tartget
+  $('#tokenURI').select();
+  //copy to clipboad
+  document.execCommand("Copy");
+
+  alert("コピーできました！");
 })

@@ -1,0 +1,22 @@
+#tokenURIGroup {
+  position: relative;
+  display: none;
+}
+
+#tokenURI {
+  cursor: pointer;
+  text-align: center;
+}
+
+#tokenURIGroup {
+  margin-top: 20px;
+}
+
+#copy {
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  top: 32px;
+  display: none;
+  opacity: 0.9;
+}
