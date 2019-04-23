@@ -1,0 +1,3 @@
+# IPFS_Uploader
+
+ERC721のsetTokenURIを実行するためのwebアプリで、IPFSに画像をアップロードする際に使用する
